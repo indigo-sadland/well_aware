@@ -26,3 +26,6 @@ git clone https://github.com/indigo-sadland/well_aware/
 cd well_aware
 go build -o <OUTPUT_FILE_NAME> main.go
 ```
+
+## Contribution
+Please, feel free to send me requests about extending the tool :octocat:
