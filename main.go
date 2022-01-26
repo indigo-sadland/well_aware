@@ -1,27 +1,37 @@
 package main
 
-
 import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
+	"github.com/indigo-sadland/well_aware/screens"
+	"github.com/indigo-sadland/well_aware/utils"
 )
-import "well_aware/services/domain_ip/gui"
 
 const preferenceCurrentTool = "currentTool"
 
-func main()  {
+var OStool string
+
+func init() {
+	utils.OsDetection()
+}
+
+func main() {
+
 	newApp := app.NewWithID("Well Aware")
 	newApp.Settings().SetTheme(theme.LightTheme())
+
 	window := newApp.NewWindow("Well Aware")
 	title := widget.NewLabel("")
 	intro := widget.NewLabel("")
+	window.Resize(fyne.NewSize(700, 500))
+
 	content := container.NewMax()
 	tool := container.NewBorder(
 		container.NewVBox(title, widget.NewSeparator(), intro), nil, nil, nil, content)
-	setTutorial := func(t gui.ToolsPanel) {
+	setTutorial := func(t screens.ToolsPanel) {
 		title.SetText(t.Title)
 		intro.SetText(t.Intro)
 
@@ -35,15 +45,16 @@ func main()  {
 }
 
 // makeNav creates tree view for the left panel
-func makeNav(setTutorial func(tutorial gui.ToolsPanel), loadPrevious bool) fyne.CanvasObject {
+func makeNav(setTutorial func(tutorial screens.ToolsPanel), loadPrevious bool) fyne.CanvasObject {
+
 	a := fyne.CurrentApp()
 
 	tree := &widget.Tree{
 		ChildUIDs: func(uid string) []string {
-			return gui.ToolsPanelIndex[uid]
+			return screens.ToolsPanelIndex[uid]
 		},
 		IsBranch: func(uid string) bool {
-			children, ok := gui.ToolsPanelIndex[uid]
+			children, ok := screens.ToolsPanelIndex[uid]
 
 			return ok && len(children) > 0
 		},
@@ -51,7 +62,7 @@ func makeNav(setTutorial func(tutorial gui.ToolsPanel), loadPrevious bool) fyne.
 			return widget.NewLabel("Collection Widgets")
 		},
 		UpdateNode: func(uid string, branch bool, obj fyne.CanvasObject) {
-			t, ok := gui.Tools[uid]
+			t, ok := screens.Tools[uid]
 			if !ok {
 				fyne.LogError("Missing tutorial panel: "+uid, nil)
 				return
@@ -59,7 +70,7 @@ func makeNav(setTutorial func(tutorial gui.ToolsPanel), loadPrevious bool) fyne.
 			obj.(*widget.Label).SetText(t.Title)
 		},
 		OnSelected: func(uid string) {
-			if t, ok := gui.Tools[uid]; ok {
+			if t, ok := screens.Tools[uid]; ok {
 				a.Preferences().SetString(preferenceCurrentTool, uid)
 				setTutorial(t)
 			}
@@ -67,7 +78,8 @@ func makeNav(setTutorial func(tutorial gui.ToolsPanel), loadPrevious bool) fyne.
 	}
 
 	if loadPrevious {
-		currentPref := a.Preferences().StringWithFallback(preferenceCurrentTool, "main")
+		//currentPref := a.Preferences().StringWithFallback(preferenceCurrentTool, "main")
+		currentPref := "main"
 		tree.Select(currentPref)
 	}
 

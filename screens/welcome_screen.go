@@ -1,14 +1,16 @@
-package gui
+package screens
 
 import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/widget"
+	"github.com/indigo-sadland/well_aware/assets"
 	"net/url"
 )
 
 func parseURL(urlStr string) *url.URL {
+
 	link, err := url.Parse(urlStr)
 	if err != nil {
 		fyne.LogError("Could not parse URL", err)
@@ -18,11 +20,10 @@ func parseURL(urlStr string) *url.URL {
 }
 
 func welcomeScreen(_ fyne.Window) fyne.CanvasObject {
-	pic, _ := fyne.LoadResourceFromPath("C:\\Users\\Public\\logo.png") // TODO: Change this
-	logo := canvas.NewImageFromResource(pic)
+
+	logo := canvas.NewImageFromResource(assets.ResourceLogoPng)
 	logo.FillMode = canvas.ImageFillContain
 	logo.SetMinSize(fyne.NewSize(567, 167))
-
 
 	return container.NewCenter(container.NewVBox(
 		logo,
