@@ -103,11 +103,42 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 
 	})
 
+	gdocsButton := widget.NewButton("google_docs", func() {
+
+		url = "https://www.google.com/search?q=site:docs.google.com " + input.Text
+		err = exec.Command(utils.OStool, url).Start()
+		if err != nil {
+			gologger.Error().Msgf(err.Error())
+		}
+	})
+
+	eyedexButton := widget.NewButton("eyedex_search", func() {
+
+		url = "https://eyedex.org/search/?q=" + input.Text
+		err = exec.Command(utils.OStool, url).Start()
+		if err != nil {
+			gologger.Error().Msgf(err.Error())
+		}
+
+	})
+
+	googleOpenDirButton := widget.NewButton("open_dir", func() {
+
+		url = input.Text + " intitle:\"index of\" -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) " +
+			"-inurl:(hypem|unknownsecret|sirens|writeups|trimediacentral|articlescentral|listen77" +
+			"|mp3raid|mp3toss|mp3drug|theindexof|index_of|wallywashis|indexofmp3)"
+		err = exec.Command(utils.OStool, url).Start()
+		if err != nil {
+			gologger.Error().Msgf(err.Error())
+		}
+
+	})
+
 	topContainer := container.NewGridWithColumns(1, input)
 
 	group := container.NewVBox(
 		ipfsButton, pastesButton, shortUrlButton, telegramSearchButton, awsBucketsButton, mmntButton, dorkftpButton,
-		gdriveButton,
+		gdriveButton, gdocsButton, googleOpenDirButton, eyedexButton,
 	)
 
 	buttonsContainer := container.NewVScroll(group)
