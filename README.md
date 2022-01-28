@@ -28,4 +28,4 @@ go build -o <OUTPUT_FILE_NAME> main.go
 ```
 
 ## Contribution
-Please, feel free to send me requests about extending the tool :octocat:
+Please, feel free to send me requests on extending the tool :octocat:
