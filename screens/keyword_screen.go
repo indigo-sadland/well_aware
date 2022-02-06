@@ -124,9 +124,19 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 
 	googleOpenDirButton := widget.NewButton("open_dir", func() {
 
-		url = input.Text + " intitle:\"index of\" -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) " +
+		url = "https://www.google.com/search?q=intitle:\"index of\" -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) " +
 			"-inurl:(hypem|unknownsecret|sirens|writeups|trimediacentral|articlescentral|listen77" +
-			"|mp3raid|mp3toss|mp3drug|theindexof|index_of|wallywashis|indexofmp3)"
+			"|mp3raid|mp3toss|mp3drug|theindexof|index_of|wallywashis|indexofmp3) " + input.Text
+		err = exec.Command(utils.OStool, url).Start()
+		if err != nil {
+			gologger.Error().Msgf(err.Error())
+		}
+
+	})
+
+	trelloButton := widget.NewButton("trello", func() {
+
+		url = "https://www.google.com/search?q=inurl:\"https://trello.com\" " + input.Text
 		err = exec.Command(utils.OStool, url).Start()
 		if err != nil {
 			gologger.Error().Msgf(err.Error())
@@ -138,7 +148,7 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 
 	group := container.NewVBox(
 		ipfsButton, pastesButton, shortUrlButton, telegramSearchButton, awsBucketsButton, mmntButton, dorkftpButton,
-		gdriveButton, gdocsButton, googleOpenDirButton, eyedexButton,
+		gdriveButton, gdocsButton, googleOpenDirButton, eyedexButton, trelloButton,
 	)
 
 	buttonsContainer := container.NewVScroll(group)
