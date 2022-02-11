@@ -32,7 +32,7 @@ go build -o <OUTPUT_FILE_NAME> main.go
 To update the tool use the following command:
 ```sh
 go get -u github.com/indigo-sadland/well_aware/...
-```sh
+```
 
 ## Contribution
 Please, feel free to send me requests on extending the tool :octocat:
