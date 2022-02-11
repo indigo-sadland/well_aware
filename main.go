@@ -10,12 +10,13 @@ import (
 	"github.com/indigo-sadland/well_aware/utils"
 )
 
-const preferenceCurrentTool = "currentTool"
-
-var OStool string
+const preferenceCurrentTool = ""
 
 func init() {
+
 	utils.OsDetection()
+	utils.ErrorLogInit()
+
 }
 
 func main() {

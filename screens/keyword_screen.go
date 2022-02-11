@@ -5,8 +5,7 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/widget"
 	"github.com/indigo-sadland/well_aware/utils"
-	"github.com/projectdiscovery/gologger"
-	"os/exec"
+	"time"
 )
 
 func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
@@ -20,9 +19,18 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 	ipfsButton := widget.NewButton("ipfs_search", func() {
 
 		url = "https://ipfs-search.com/#/search?q=" + input.Text + "&page=1&last_seen"
-		err = exec.Command(utils.OStool, url).Start()
+		utils.Cmd.Args = append(utils.CmdArgs, url)
+
+		cmd := utils.Cmd
+		err = cmd.Start()
 		if err != nil {
-			gologger.Error().Msgf(err.Error())
+			utils.ErrorLogger.Println(err.Error())
+		}
+
+		time.Sleep(500 * time.Millisecond)
+		err = cmd.Process.Kill()
+		if err != nil {
+			utils.ErrorLogger.Println(err.Error())
 		}
 
 	})
@@ -35,9 +43,18 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 			"| site:phpfiddle.org | site:ide.geeksforgeeks.org | site:repl.it | site:ideone.com | site:paste.debian.net " +
 			"| site:paste.org | site:paste.org.ru | site:codebeautify.org | site:trello.com " +
 			"| site:papaly.com | site:0bin.net | site:paste-bin.xyz " + input.Text
-		err = exec.Command(utils.OStool, url).Start()
+		utils.Cmd.Args = append(utils.CmdArgs, url)
+
+		cmd := utils.Cmd
+		err = cmd.Start()
 		if err != nil {
-			gologger.Error().Msgf(err.Error())
+			utils.ErrorLogger.Println(err.Error())
+		}
+
+		time.Sleep(500 * time.Millisecond)
+		err = cmd.Process.Kill()
+		if err != nil {
+			utils.ErrorLogger.Println(err.Error())
 		}
 
 	})
@@ -45,9 +62,18 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 	shortUrlButton := widget.NewButton("short_url_search", func() {
 
 		url = "https://shorteners.grayhatwarfare.com/shorteners?keywords=" + input.Text + "&order=&ext="
-		err = exec.Command(utils.OStool, url).Start()
+		utils.Cmd.Args = append(utils.CmdArgs, url)
+
+		cmd := utils.Cmd
+		err = cmd.Start()
 		if err != nil {
-			gologger.Error().Msgf(err.Error())
+			utils.ErrorLogger.Println(err.Error())
+		}
+
+		time.Sleep(500 * time.Millisecond)
+		err = cmd.Process.Kill()
+		if err != nil {
+			utils.ErrorLogger.Println(err.Error())
 		}
 
 	})
@@ -55,9 +81,18 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 	telegramSearchButton := widget.NewButton("telegram_search", func() {
 
 		url = "https://lyzem.com/search?q=" + input.Text
-		err = exec.Command(utils.OStool, url).Start()
+		utils.Cmd.Args = append(utils.CmdArgs, url)
+
+		cmd := utils.Cmd
+		err = cmd.Start()
 		if err != nil {
-			gologger.Error().Msgf(err.Error())
+			utils.ErrorLogger.Println(err.Error())
+		}
+
+		time.Sleep(500 * time.Millisecond)
+		err = cmd.Process.Kill()
+		if err != nil {
+			utils.ErrorLogger.Println(err.Error())
 		}
 
 	})
@@ -65,9 +100,18 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 	awsBucketsButton := widget.NewButton("s3_buckets", func() {
 
 		url = "https://buckets.grayhatwarfare.com/results/" + input.Text
-		err = exec.Command(utils.OStool, url).Start()
+		utils.Cmd.Args = append(utils.CmdArgs, url)
+
+		cmd := utils.Cmd
+		err = cmd.Start()
 		if err != nil {
-			gologger.Error().Msgf(err.Error())
+			utils.ErrorLogger.Println(err.Error())
+		}
+
+		time.Sleep(500 * time.Millisecond)
+		err = cmd.Process.Kill()
+		if err != nil {
+			utils.ErrorLogger.Println(err.Error())
 		}
 
 	})
@@ -76,9 +120,18 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 
 		url = "https://www.mmnt.net/get?cx=partner-pub-7093288927147322%3Asqzu2pvo68m&cof=FORID%3A10&ie=UTF-8&q=" +
 			input.Text + "&sa=MMNT.net+search"
-		err = exec.Command(utils.OStool, url).Start()
+		utils.Cmd.Args = append(utils.CmdArgs, url)
+
+		cmd := utils.Cmd
+		err = cmd.Start()
 		if err != nil {
-			gologger.Error().Msgf(err.Error())
+			utils.ErrorLogger.Println(err.Error())
+		}
+
+		time.Sleep(500 * time.Millisecond)
+		err = cmd.Process.Kill()
+		if err != nil {
+			utils.ErrorLogger.Println(err.Error())
 		}
 
 	})
@@ -86,9 +139,18 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 	dorkftpButton := widget.NewButton("google_dork_ftp", func() {
 
 		url = "https://www.google.com/search?&q=inurl:ftp -inurl:(http|https) " + input.Text
-		err = exec.Command(utils.OStool, url).Start()
+		utils.Cmd.Args = append(utils.CmdArgs, url)
+
+		cmd := utils.Cmd
+		err = cmd.Start()
 		if err != nil {
-			gologger.Error().Msgf(err.Error())
+			utils.ErrorLogger.Println(err.Error())
+		}
+
+		time.Sleep(500 * time.Millisecond)
+		err = cmd.Process.Kill()
+		if err != nil {
+			utils.ErrorLogger.Println(err.Error())
 		}
 
 	})
@@ -96,9 +158,18 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 	gdriveButton := widget.NewButton("google_drive", func() {
 
 		url = "https://www.google.com/search?q=site:drive.google.com " + input.Text
-		err = exec.Command(utils.OStool, url).Start()
+		utils.Cmd.Args = append(utils.CmdArgs, url)
+
+		cmd := utils.Cmd
+		err = cmd.Start()
 		if err != nil {
-			gologger.Error().Msgf(err.Error())
+			utils.ErrorLogger.Println(err.Error())
+		}
+
+		time.Sleep(500 * time.Millisecond)
+		err = cmd.Process.Kill()
+		if err != nil {
+			utils.ErrorLogger.Println(err.Error())
 		}
 
 	})
@@ -106,18 +177,36 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 	gdocsButton := widget.NewButton("google_docs", func() {
 
 		url = "https://www.google.com/search?q=site:docs.google.com " + input.Text
-		err = exec.Command(utils.OStool, url).Start()
+		utils.Cmd.Args = append(utils.CmdArgs, url)
+
+		cmd := utils.Cmd
+		err = cmd.Start()
 		if err != nil {
-			gologger.Error().Msgf(err.Error())
+			utils.ErrorLogger.Println(err.Error())
+		}
+
+		time.Sleep(500 * time.Millisecond)
+		err = cmd.Process.Kill()
+		if err != nil {
+			utils.ErrorLogger.Println(err.Error())
 		}
 	})
 
 	eyedexButton := widget.NewButton("eyedex_search", func() {
 
 		url = "https://eyedex.org/search/?q=" + input.Text
-		err = exec.Command(utils.OStool, url).Start()
+		utils.Cmd.Args = append(utils.CmdArgs, url)
+
+		cmd := utils.Cmd
+		err = cmd.Start()
 		if err != nil {
-			gologger.Error().Msgf(err.Error())
+			utils.ErrorLogger.Println(err.Error())
+		}
+
+		time.Sleep(500 * time.Millisecond)
+		err = cmd.Process.Kill()
+		if err != nil {
+			utils.ErrorLogger.Println(err.Error())
 		}
 
 	})
@@ -127,9 +216,18 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 		url = "https://www.google.com/search?q=intitle:\"index of\" -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) " +
 			"-inurl:(hypem|unknownsecret|sirens|writeups|trimediacentral|articlescentral|listen77" +
 			"|mp3raid|mp3toss|mp3drug|theindexof|index_of|wallywashis|indexofmp3) " + input.Text
-		err = exec.Command(utils.OStool, url).Start()
+		utils.Cmd.Args = append(utils.CmdArgs, url)
+
+		cmd := utils.Cmd
+		err = cmd.Start()
 		if err != nil {
-			gologger.Error().Msgf(err.Error())
+			utils.ErrorLogger.Println(err.Error())
+		}
+
+		time.Sleep(500 * time.Millisecond)
+		err = cmd.Process.Kill()
+		if err != nil {
+			utils.ErrorLogger.Println(err.Error())
 		}
 
 	})
@@ -137,9 +235,18 @@ func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 	trelloButton := widget.NewButton("trello", func() {
 
 		url = "https://www.google.com/search?q=inurl:\"https://trello.com\" " + input.Text
-		err = exec.Command(utils.OStool, url).Start()
+		utils.Cmd.Args = append(utils.CmdArgs, url)
+
+		cmd := utils.Cmd
+		err = cmd.Start()
 		if err != nil {
-			gologger.Error().Msgf(err.Error())
+			utils.ErrorLogger.Println(err.Error())
+		}
+
+		time.Sleep(500 * time.Millisecond)
+		err = cmd.Process.Kill()
+		if err != nil {
+			utils.ErrorLogger.Println(err.Error())
 		}
 
 	})
