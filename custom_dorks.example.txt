@@ -1,0 +1,5 @@
+site:*/phpmyadmin/server_import.php
+intext:"Welcome to Huawei web page for network configuration."
+intitle: index of /bin/php.ini
+inurl:/_vti_bin/Authentication.asmx
+ext:txt intext:Windows PowerShell transcript start
