@@ -17,12 +17,13 @@ var (
 		"main":    {"Main", "", welcomeScreen},
 		"domain":  {"Domain Recon", "set of dorks and other tools for domain recon", DomainReconScreen},
 		"keyword": {"Keyword Search", "set of dorks and other tools for proper search", KeywordSearchScreen},
+		"custom dorks": {"Keyword Search", "set of dorks and other tools for proper search", KeywordSearchScreen},
 	}
 
 	// ToolsPanelIndex  defines how our tools should be laid out in the index tree
 	ToolsPanelIndex = map[string][]string{
 		"": {"main", "domain", "keyword"},
-		//"collections": {"list", "table", "tree"},
+		"domain": {"custom dorks"},
 		//"containers":  {"apptabs", "border", "box", "center", "doctabs", "grid", "scroll", "split"},
 		//"widgets":     {"accordion", "button", "card", "entry", "form", "input", "progress", "text", "toolbar"},
 	}
