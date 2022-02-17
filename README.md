@@ -22,7 +22,7 @@
 ## Installation
 
 ```sh
-go get github.com/indigo-sadland/well_aware/
+go install github.com/indigo-sadland/well_aware@latest
 ```
 or you can build from binary
 ```sh
