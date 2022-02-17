@@ -27,5 +27,12 @@ cd well_aware
 go build -o <OUTPUT_FILE_NAME> main.go
 ```
 
+## Update
+
+To update the tool use the following command:
+```sh
+go get -u github.com/indigo-sadland/well_aware/...
+```
+
 ## Contribution
 Please, feel free to send me requests on extending the tool :octocat:
