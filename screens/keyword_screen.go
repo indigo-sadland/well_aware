@@ -8,7 +8,8 @@ import (
 	"time"
 )
 
-func KeywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
+// keywordSearchScreen represents the part of  window with set of dorks for searching with keyword.
+func keywordSearchScreen(_ fyne.Window) fyne.CanvasObject {
 
 	var err error
 	var url string

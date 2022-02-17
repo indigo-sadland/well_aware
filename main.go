@@ -6,6 +6,7 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
+	"github.com/indigo-sadland/well_aware/assets"
 	"github.com/indigo-sadland/well_aware/screens"
 	"github.com/indigo-sadland/well_aware/utils"
 )
@@ -27,12 +28,17 @@ func main() {
 	window := newApp.NewWindow("Well Aware")
 	title := widget.NewLabel("")
 	intro := widget.NewLabel("")
-	window.Resize(fyne.NewSize(700, 500))
+	window.Resize(fyne.NewSize(800, 500))
+	window.SetIcon(assets.ResourceIconPng)
 
 	content := container.NewMax()
 	tool := container.NewBorder(
 		container.NewVBox(title, widget.NewSeparator(), intro), nil, nil, nil, content)
 	setTutorial := func(t screens.ToolsPanel) {
+		if t.Title == "Main" {
+			t.Title = ""
+		}
+
 		title.SetText(t.Title)
 		intro.SetText(t.Intro)
 
@@ -40,12 +46,12 @@ func main() {
 		content.Refresh()
 	}
 	split := container.NewHSplit(makeNav(setTutorial, true), tool)
-	split.Offset = 0.2
+	split.Offset = 0.3
 	window.SetContent(split)
 	window.ShowAndRun()
 }
 
-// makeNav creates tree view for the left panel
+// makeNav creates tree view for the left panel.
 func makeNav(setTutorial func(tutorial screens.ToolsPanel), loadPrevious bool) fyne.CanvasObject {
 
 	a := fyne.CurrentApp()
@@ -60,12 +66,11 @@ func makeNav(setTutorial func(tutorial screens.ToolsPanel), loadPrevious bool) f
 			return ok && len(children) > 0
 		},
 		CreateNode: func(branch bool) fyne.CanvasObject {
-			return widget.NewLabel("Collection Widgets")
+			return widget.NewLabel("New Branch")
 		},
 		UpdateNode: func(uid string, branch bool, obj fyne.CanvasObject) {
 			t, ok := screens.Tools[uid]
 			if !ok {
-				fyne.LogError("Missing tutorial panel: "+uid, nil)
 				return
 			}
 			obj.(*widget.Label).SetText(t.Title)

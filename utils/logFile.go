@@ -8,6 +8,7 @@ import (
 
 var ErrorLogger   *log.Logger
 
+// ErrorLogInit creates logger for errors.
 func ErrorLogInit() {
 
 	var logFile string

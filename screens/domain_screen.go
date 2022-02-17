@@ -8,7 +8,8 @@ import (
 	"time"
 )
 
-func DomainReconScreen(_ fyne.Window) fyne.CanvasObject {
+// domainReconScreen represents the part of window with set of dorks for target domain.
+func domainReconScreen(_ fyne.Window) fyne.CanvasObject {
 
 	var err error
 	var url string

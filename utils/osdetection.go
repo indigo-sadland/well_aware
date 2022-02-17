@@ -13,6 +13,7 @@ var (
 
 )
 
+// OsDetection checks user's OS and selects appropriate command and arguments for CMD.
 func OsDetection() {
 
 	var err error
