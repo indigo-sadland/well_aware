@@ -1,15 +1,19 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/37074372/151218209-4834240b-48b6-4f22-8197-5f5a3d3a1a66.png" alt="logo"/>
+  <img  width="128" height="128" src="https://user-images.githubusercontent.com/37074372/154437448-3e82e0fc-ec70-4a32-b640-2184eeac99c4.png" alt="logo"/>
 </p>
 
-## Description
+
+
 >**well_aware** is a cross platform osint tool written on go + [Fyne GUI](https://github.com/fyne-io/fyne). \
->Currently the tool contains two sections: *Domain Recon* and *Keyword Search*.
-> <img width="758" alt="Screenshot 2022-01-26 at 21 06 43" src="https://user-images.githubusercontent.com/37074372/151221396-1d214d17-cdcd-42a3-b3e4-c92cf4d18420.png"> \
->The Domain Recon section aimed to help in quick getting of information about target domain. \
+>Currently the tool contains three sections: *Domain Recon*, *Keyword Search* and *Custom Dorks*.
+> <img width="758" alt="Screenshot 2022-01-26 at 21 06 43" src="https://user-images.githubusercontent.com/37074372/154436533-1e73e807-f018-424b-b311-940bf8a7a4a6.PNG"> \
+>The **Domain Recon** section aimed to help in quick getting of information about target domain. \
 >\
-><img width="756" alt="Screenshot 2022-01-26 at 21 07 15" src="https://user-images.githubusercontent.com/37074372/151222394-14887186-f2ad-417f-ba75-2ff53131b110.png">\
->The Keyword Search utilizes google dorks and other sources to find some juicy information.
+><img width="756" alt="Screenshot 2022-01-26 at 21 07 15" src="https://user-images.githubusercontent.com/37074372/154436656-82ccb8e3-464b-4e48-bb19-e918ccbc2085.PNG">\
+>The **Keyword Search** utilizes google dorks and other sources to find some juicy information. \
+>\
+><img width="756" alt="Screenshot 2022-01-26 at 21 07 15" src="https://user-images.githubusercontent.com/37074372/154436795-f0482eea-dd89-47ab-85d5-6d830366fc5a.PNG">\
+>The **Custom Dorks** section allows you to upload txt file with set of google dorks.
 
 ## Requirements
 
