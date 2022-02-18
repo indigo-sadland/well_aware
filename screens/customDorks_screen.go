@@ -13,17 +13,30 @@ import (
 	"strings"
 	"time"
 )
-// customDorksScreen represents the part of window with uploading custom dorks
+
+// customDorksScreen represents the part of window with uploading custom google dorks
 // for domain recon or keyword search.
 func customDorksScreen(w fyne.Window) fyne.CanvasObject {
 
 	input := widget.NewEntry()
 	input.SetPlaceHolder("Enter target domain or keyword")
 
+	optionsText := ""
+	options := widget.NewSelect([]string{"domain", "keyword"}, func(s string) {
+		optionsText = s
+	})
+	options.PlaceHolder = "[Target Type]"
+
 	fileInput := widget.NewButton("Select Dorks' File", func() {
 
+		if optionsText == "" {
+			dialog.ShowError(fmt.Errorf("select type of target"), w)
+			return
+		}
+
 		if input.Text == "" {
-			dialog.ShowError(fmt.Errorf("enter target domain or keyword before loading dorks"), w)
+			dialog.ShowError(fmt.Errorf("enter target domain or keyword before loading dorks\n"+
+				"(or press the space key in the input field to leave it blank)"), w)
 			return
 		}
 
@@ -43,7 +56,7 @@ func customDorksScreen(w fyne.Window) fyne.CanvasObject {
 				dialog.ShowError(err, w)
 			}
 
-			buttons := createButtons(lines, input.Text)
+			buttons := createButtons(lines, input.Text, optionsText)
 
 			a := fyne.CurrentApp()
 			dorksWindow := a.NewWindow("Custom Dorks")
@@ -60,9 +73,11 @@ func customDorksScreen(w fyne.Window) fyne.CanvasObject {
 		fd.Show()
 	})
 
-	main := container.NewAdaptiveGrid(2, container.NewVBox(input), container.NewVBox(fileInput))
+	first := container.NewAdaptiveGrid(2, container.NewVBox(input),
+		container.NewVBox(fileInput))
+	second := container.NewVBox(first, container.NewGridWithColumns(2, container.NewVBox(options)))
 
-	return main
+	return second
 }
 
 func openFile(f fyne.URIReadCloser) ([]string, error) {
@@ -93,17 +108,25 @@ func openFile(f fyne.URIReadCloser) ([]string, error) {
 
 }
 
-func createButtons(lines []string, target string) []fyne.CanvasObject {
+func createButtons(lines []string, target, tt string) []fyne.CanvasObject {
 
 	var url string
 	var err error
+	var q string
 	var dorkButtons []fyne.CanvasObject
+
+	switch tt {
+	case "domain":
+		q = " site:"
+	case "keyword":
+		q = " "
+	}
 
 	for n := 0; n < len(lines); n++ {
 		index := n
 
 		b := widget.NewButton(lines[index], func() {
-			url = "https://www.google.com/search?q=" + lines[index] + " site:" + target
+			url = "https://www.google.com/search?q=" + lines[index] + q + target
 			utils.Cmd.Args = append(utils.CmdArgs, url)
 
 			cmd := utils.Cmd

@@ -17,11 +17,11 @@ var (
 		"main":         {"Main", "", welcomeScreen},
 		"domain":       {"Domain Recon", "set of dorks and other tools for domain recon", domainReconScreen},
 		"keyword":      {"Keyword Search", "set of dorks and other tools for proper search", keywordSearchScreen},
-		"custom dorks": {"Custom Dorks", "upload your list of dorks", customDorksScreen},
+		"custom dorks": {"Custom Dorks", "upload your list of google dorks", customDorksScreen},
 	}
 
 	// ToolsPanelIndex  defines how our tools should be laid out in the index tree.
 	ToolsPanelIndex = map[string][]string{
-		"":       {"main", "domain", "keyword", "custom dorks"},
+		"": {"main", "domain", "keyword", "custom dorks"},
 	}
 )
