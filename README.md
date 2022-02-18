@@ -18,6 +18,7 @@
 ## Requirements
 
 - Go 1.17+
+- OS: Windows, Linux or Darwin
 
 ## Installation
 
@@ -38,5 +39,13 @@ To update the tool use the following command:
 go get -u github.com/indigo-sadland/well_aware/...
 ```
 
+## 
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/37074372/154744216-adcc14ff-2565-4a7e-acac-8d253fc70b02.gif)
+
+
 ## Contribution
 Please, feel free to send me requests on extending the tool :octocat:
+
+##
+*For education purpose only*
