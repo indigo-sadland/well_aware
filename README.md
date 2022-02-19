@@ -32,7 +32,7 @@ cd well_aware
 go build -o <OUTPUT_FILE_NAME> main.go
 ```
 
-## 
+## Demo
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/37074372/154744216-adcc14ff-2565-4a7e-acac-8d253fc70b02.gif)
 
